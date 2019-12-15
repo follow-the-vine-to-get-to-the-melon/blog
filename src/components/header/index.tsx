@@ -5,6 +5,7 @@ import classnames from "classnames";
 
 import { Language, Translations, translations } from "../../utils/translations";
 import { MenuModel, menuModel } from "../menu";
+import Search from "../search";
 
 const css = require("./header.module.css");
 
@@ -13,6 +14,10 @@ const Logo = ({ lang }: { lang: Language }) => (
     <h2>Lesley Lai 赖思理</h2>
   </Link>
 );
+
+const searchIndices = [
+  { name: "LesleyBlogPosts", title: "Blog Posts", hitComp: "PostHit" }
+];
 
 interface MenuItemProp extends React.HTMLProps<HTMLDivElement> {
   itemName: keyof Translations;
@@ -141,7 +146,6 @@ export default class Header extends React.Component<HeaderProps, HeaderStates> {
                 </li>
               ))}
             </ul>
-
             {otherLangs.length !== 0 && (
               <ul className={css.menuItems}>
                 {otherLangs.map(otherLang => (
@@ -156,6 +160,7 @@ export default class Header extends React.Component<HeaderProps, HeaderStates> {
               </ul>
             )}
           </nav>
+          <Search collapse indices={searchIndices} />
         </div>
       </header>
     );
